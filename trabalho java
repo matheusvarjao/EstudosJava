@@ -1,0 +1,61 @@
+package ProjetoJava;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class VeryBasicTokenizer {
+	private char[] input;
+	private int index;
+
+	public VeryBasicTokenizer(String str) {
+		input = str.toCharArray();
+		index = 0;
+		
+	}
+
+	private char getNextChar() {
+		if (index >= input.length) {return '\0'; } 
+			return input[index++];
+		}
+
+
+	public List<String> tokenize() {
+		List<String> tokens = new ArrayList<>();
+		StringBuilder sb = new StringBuilder();
+		char currChar = getNextChar();
+	}
+
+	boolean isTokenizing = true;
+	while (isTokenizing) {
+		while (Character.isWhitespace(currChar))
+			currChar = getNextChar();
+			
+			if (Character.isDigit(currChar)) {
+				sb.setLength(0);
+				while (Character.isDigit(currChar)) {
+					sb.append(currChar);
+					currChar = getNextChar;	
+				}
+				tokens.add(sb.toString());
+			
+			}else if (currChar == '+') {
+				tokens.add('+');
+				currChar = getNextChar();
+				
+			}else if (currChar == '*') {
+				tokens.add('*');
+				currChar = getNextChar();
+				
+			}else if (currChar == '\0') {
+				System.out.println( "Chegou ao final da string.");
+				isTokeninzing = false;
+				
+			}else {
+				System.out.println("Token não reconhecido: ") + currChar);
+				isTokenizing = false;
+			}
+		}
+
+		System.out.println("Encerrando...\n");
+		return tokens;
+}
